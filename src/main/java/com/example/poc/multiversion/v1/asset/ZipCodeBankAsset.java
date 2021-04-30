@@ -1,6 +1,6 @@
 package com.example.poc.multiversion.v1.asset;
 
-import com.example.poc.multiversion.BaseEntity;
+import com.example.poc.multiversion.v1.BaseEntity;
 import com.example.poc.multiversion.v1.manager.AssetType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

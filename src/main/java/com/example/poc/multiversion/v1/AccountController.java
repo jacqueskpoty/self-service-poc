@@ -1,4 +1,4 @@
-package com.example.poc.multiversion;
+package com.example.poc.multiversion.v1;
 
 import com.example.poc.multiversion.v1.account.AccountDTO;
 import com.example.poc.multiversion.v1.asset.Asset;

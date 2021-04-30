@@ -1,7 +1,7 @@
 package com.example.poc.multiversion.v1.account;
 
 import com.example.poc.multiversion.v1.flight.Flight;
-import com.example.poc.multiversion.AccountService;
+import com.example.poc.multiversion.v1.AccountService;
 import com.example.poc.multiversion.v1.asset.Asset;
 import com.example.poc.multiversion.v1.manager.AssetType;
 import lombok.RequiredArgsConstructor;

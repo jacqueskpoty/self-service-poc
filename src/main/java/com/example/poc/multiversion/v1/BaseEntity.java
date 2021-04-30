@@ -1,4 +1,4 @@
-package com.example.poc.multiversion;
+package com.example.poc.multiversion.v1;
 
 import lombok.Builder;
 import lombok.Data;

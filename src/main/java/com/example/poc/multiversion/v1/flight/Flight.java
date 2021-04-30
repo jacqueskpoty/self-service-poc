@@ -1,12 +1,11 @@
 package com.example.poc.multiversion.v1.flight;
 
-import com.example.poc.multiversion.BaseEntity;
+import com.example.poc.multiversion.v1.BaseEntity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Data
