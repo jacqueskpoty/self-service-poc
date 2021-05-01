@@ -3,7 +3,7 @@ package com.example.poc.multiversion.v2.application.service;
 import com.example.poc.multiversion.v2.application.domain.Account;
 import com.example.poc.multiversion.v2.application.port.in.web.asset.AssetDTO;
 import com.example.poc.multiversion.v2.application.port.in.web.asset.GetAssetListUseCase;
-import com.example.poc.multiversion.v2.application.port.out.persistence.account.LoadAccountPort;
+import com.example.poc.multiversion.v2.application.port.out.persistence.LoadAccountPort;
 import com.example.poc.multiversion.v2.common.UseCase;
 import lombok.RequiredArgsConstructor;
 

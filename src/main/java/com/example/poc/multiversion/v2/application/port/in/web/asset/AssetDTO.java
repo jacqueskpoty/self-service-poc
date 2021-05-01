@@ -8,6 +8,7 @@ import com.example.poc.multiversion.v2.application.domain.ZipCodeBankAsset;
 import com.example.poc.multiversion.v2.common.SelfValidating;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.bson.types.ObjectId;
@@ -16,6 +17,7 @@ import org.bson.types.ObjectId;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
+@EqualsAndHashCode(callSuper = false)
 public class AssetDTO extends SelfValidating<AssetDTO> {
 
     private ObjectId id;

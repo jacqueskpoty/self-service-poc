@@ -14,9 +14,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
+@EqualsAndHashCode(callSuper = false)
 public class FlightDTO extends SelfValidating<FlightDTO> {
     private ObjectId id;
     private String name;
+    @Builder.Default
     private List<FlightSet> flightSet = new ArrayList<>();
 
     public Flight getFlight(){

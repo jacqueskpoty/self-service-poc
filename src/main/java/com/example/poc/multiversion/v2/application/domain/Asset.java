@@ -26,7 +26,11 @@ public abstract class Asset extends BaseDomain{
     @Builder.Default
     private AssetType type = AssetType.DEFAULT;
 
-    public String get_id() { return _id.toString(); }
+    public String getStringId() { return _id.toString(); }
+
+    public ObjectId get_id(){
+        return _id;
+    }
 
     public AssetDTO getAssetDTO(){
         return AssetDTO.builder().id(_id)

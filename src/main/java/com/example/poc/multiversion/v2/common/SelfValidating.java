@@ -1,8 +1,11 @@
 package com.example.poc.multiversion.v2.common;
 
+import lombok.experimental.SuperBuilder;
+
 import javax.validation.*;
 import java.util.Set;
 
+@SuperBuilder
 public abstract class SelfValidating<T> {
 
     private Validator validator;

@@ -4,8 +4,8 @@ import com.example.poc.multiversion.v2.application.domain.Account;
 import com.example.poc.multiversion.v2.application.domain.Asset;
 import com.example.poc.multiversion.v2.application.port.in.web.asset.AddAssetUseCase;
 import com.example.poc.multiversion.v2.application.port.in.web.asset.AssetDTO;
-import com.example.poc.multiversion.v2.application.port.out.persistence.account.LoadAccountPort;
-import com.example.poc.multiversion.v2.application.port.out.persistence.account.SaveAccountPort;
+import com.example.poc.multiversion.v2.application.port.out.persistence.LoadAccountPort;
+import com.example.poc.multiversion.v2.application.port.out.persistence.SaveAccountPort;
 import com.example.poc.multiversion.v2.common.UseCase;
 import lombok.RequiredArgsConstructor;
 

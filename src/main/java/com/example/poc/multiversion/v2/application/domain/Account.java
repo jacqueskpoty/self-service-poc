@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
@@ -14,12 +13,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 
-@Slf4j
 @Getter
 @SuperBuilder
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
-public class Account {
+public class Account extends BaseDomain{
 
     @Id
     private String id;
