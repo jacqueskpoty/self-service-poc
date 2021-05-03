@@ -35,4 +35,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.20'
     testCompileOnly 'org.projectlombok:lombok:1.18.20'
 
+    testImplementation 'com.tngtech.archunit:archunit:0.18.0'
+
 }
