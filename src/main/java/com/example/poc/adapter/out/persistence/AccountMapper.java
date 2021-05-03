@@ -10,7 +10,7 @@ import org.mapstruct.ReportingPolicy;
  * In order to understand the Mapper interface technology, learn about MapStruct on
  * https://mapstruct.org/
  */
-@Mapper(componentModel = "spring",unmappedSourcePolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring",unmappedSourcePolicy = ReportingPolicy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AccountMapper {
     /**
      * Mapping an account domain to an AccountDocument
