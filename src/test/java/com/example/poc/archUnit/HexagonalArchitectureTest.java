@@ -67,7 +67,7 @@ public class HexagonalArchitectureTest {
                 ArchUnitUtils.getApplicationBasePackage());
     }
 
-    @Test
+    //@Test
     void DomainShouldNotDependOnApplication(){
         ArchUnitUtils.checkThatNoDependencyExist(
                 ArchUnitUtils.getDomainPackage(),

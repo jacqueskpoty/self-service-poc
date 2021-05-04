@@ -1,7 +1,7 @@
-package com.example.poc.adapter.out.persistence;
+package com.example.poc.adapter.out.persistence.account;
 
-import com.example.poc.domain.Asset;
-import com.example.poc.domain.Flight;
+import com.example.poc.adapter.out.persistence.asset.AssetDocument;
+import com.example.poc.adapter.out.persistence.flight.FlightDocument;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -28,7 +28,6 @@ public class AccountDocument {
     private String name;
     private LocalDateTime created;
     private LocalDateTime updated;
-    private List<Flight> flights = new ArrayList<>();
-    private List<Asset> assets = new ArrayList<>();
-
+    private List<FlightDocument> flights = new ArrayList<>();
+    private List<AssetDocument> assets = new ArrayList<>();
 }

@@ -1,5 +1,6 @@
-package com.example.poc.adapter.out.persistence;
+package com.example.poc.adapter.out.persistence.account;
 
+import com.example.poc.adapter.out.persistence.account.AccountDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**

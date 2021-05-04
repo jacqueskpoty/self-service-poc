@@ -1,5 +1,9 @@
-package com.example.poc.adapter.out.persistence;
+package com.example.poc.adapter.out.persistence.account;
 
+import com.example.poc.adapter.out.persistence.account.AccountDocument;
+import com.example.poc.adapter.out.persistence.asset.AssetMapper;
+import com.example.poc.adapter.out.persistence.flight.FlightMapper;
+import com.example.poc.adapter.out.persistence.flight.FlightSetMapper;
 import com.example.poc.domain.Account;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -10,7 +14,9 @@ import org.mapstruct.ReportingPolicy;
  * In order to understand the Mapper interface technology, learn about MapStruct on
  * https://mapstruct.org/
  */
-@Mapper(componentModel = "spring",unmappedSourcePolicy = ReportingPolicy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(uses={AssetMapper.class, FlightMapper.class},
+        componentModel = "spring",
+        unmappedSourcePolicy = ReportingPolicy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AccountMapper {
     /**
      * Mapping an account domain to an AccountDocument

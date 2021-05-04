@@ -1,4 +1,4 @@
-package com.example.poc.adapter.out.persistence;
+package com.example.poc.adapter.out.persistence.account;
 
 
 import com.example.poc.application.port.out.persistence.AccountPort;
