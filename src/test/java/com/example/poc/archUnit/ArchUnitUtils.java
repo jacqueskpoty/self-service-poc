@@ -3,9 +3,7 @@ package com.example.poc.archUnit;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
-import org.junit.platform.commons.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.tngtech.archunit.base.DescribedPredicate.greaterThanOrEqualTo;
@@ -17,8 +15,13 @@ class ArchUnitUtils {
 
     private static final String APPLICATION_BASE_PACKAGE = "com.example.poc";
     private static final String ADAPTER_PACKAGE = "adapter";
-    private static final String DOMAIN_PACKAGE = "domain";
+    private static final String ADAPTER_IN_PACKAGE = "adapter.in";
+    private static final String ADAPTER_OUT_PACKAGE = "adapter.out";
     private static final String APPLICATION_PACKAGE = "application";
+    private static final String APPLICATION_PORT_IN_PACKAGE = "application.port.in";
+    private static final String APPLICATION_PORT_OUT_PACKAGE = "application.port.out";
+    private static final String APPLICATION_SERVICE_PACKAGE = "application.service";
+    private static final String DOMAIN_PACKAGE = "domain";
 
     public static String getApplicationBasePackage(){
         return APPLICATION_BASE_PACKAGE;
@@ -32,6 +35,14 @@ class ArchUnitUtils {
         return getFullPackage(ADAPTER_PACKAGE);
     }
 
+    public static String getAdapterInPackage(){
+        return getFullPackage(ADAPTER_IN_PACKAGE);
+    }
+
+    public static String getAdapterOutPackage(){
+        return getFullPackage(ADAPTER_OUT_PACKAGE);
+    }
+
     public static String getDomainPackage(){
         return getFullPackage(DOMAIN_PACKAGE);
     }
@@ -40,7 +51,19 @@ class ArchUnitUtils {
         return getFullPackage(APPLICATION_PACKAGE);
     }
 
-    public static List<String> getApplicationPackages(){
+    public static String getApplicationPortInPackage(){
+        return getFullPackage(APPLICATION_PORT_IN_PACKAGE);
+    }
+
+    public static String getApplicationPortOutPackage(){
+        return getFullPackage(APPLICATION_PORT_OUT_PACKAGE);
+    }
+
+    public static String getApplicationServicePackage(){
+        return getFullPackage(APPLICATION_SERVICE_PACKAGE);
+    }
+
+/*    public static List<String> getApplicationPackages(){
         return new ArrayList<>(){{
             addAll(getApplicationPortInPackages());
             addAll(getApplicationPortOutPackages());
@@ -93,7 +116,7 @@ class ArchUnitUtils {
         return new ArrayList<>(){{
             add(getDomainPackage());
         }};
-    }
+    }*/
 
     static void checkThatNoDependencyExist(String fromPackage, String toPackage, String checkPackage){
         noClasses()
