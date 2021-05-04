@@ -1,4 +1,4 @@
-package com.example.poc.application.port.in.web.Flight;
+package com.example.poc.application.port.in.web.flight;
 
 import com.example.poc.domain.Flight;
 import lombok.*;

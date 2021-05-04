@@ -1,7 +1,7 @@
 package com.example.poc.adapter.in.web;
 
-import com.example.poc.application.port.in.web.Flight.FlightDTO;
-import com.example.poc.application.port.in.web.Flight.FlightUseCase;
+import com.example.poc.application.port.in.web.flight.FlightDTO;
+import com.example.poc.application.port.in.web.flight.FlightUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

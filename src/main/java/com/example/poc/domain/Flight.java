@@ -1,6 +1,6 @@
 package com.example.poc.domain;
 
-import com.example.poc.application.port.in.web.Flight.FlightDTO;
+import com.example.poc.application.port.in.web.flight.FlightDTO;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.bson.types.ObjectId;

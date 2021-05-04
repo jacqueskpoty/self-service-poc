@@ -1,5 +1,6 @@
 package com.example.poc.adapter.in.web;
 
+import com.example.poc.adapter.out.persistence.AccountDocumentRepository;
 import com.example.poc.application.port.in.web.account.AccountDTO;
 import com.example.poc.application.port.in.web.account.AccountUseCase;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ public class AccountController {
      * Particularly requests related to an Account(Business term)
      * */
     private final AccountUseCase accountUseCase;
+    private final AccountDocumentRepository accountDocumentRepository;
 
     /**
      * Creating a new account
@@ -44,6 +46,8 @@ public class AccountController {
      */
     @GetMapping("/account/{accountId}")
     public ResponseEntity getById(@PathVariable("accountId") String accountId) {
+
+        accountDocumentRepository.findAll();
         return new ResponseEntity(accountUseCase.getById(accountId), HttpStatus.OK);
     }
 }

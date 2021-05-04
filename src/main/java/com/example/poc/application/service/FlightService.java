@@ -1,7 +1,7 @@
 package com.example.poc.application.service;
 
-import com.example.poc.application.port.in.web.Flight.FlightDTO;
-import com.example.poc.application.port.in.web.Flight.FlightUseCase;
+import com.example.poc.application.port.in.web.flight.FlightDTO;
+import com.example.poc.application.port.in.web.flight.FlightUseCase;
 import com.example.poc.application.port.out.persistence.AccountPort;
 import com.example.poc.domain.Account;
 import com.example.poc.domain.Flight;
