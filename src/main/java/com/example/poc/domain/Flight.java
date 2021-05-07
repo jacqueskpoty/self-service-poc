@@ -1,6 +1,5 @@
 package com.example.poc.domain;
 
-import com.example.poc.application.port.in.web.flight.FlightDTO;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.bson.types.ObjectId;
@@ -27,18 +26,6 @@ public class Flight extends BaseDomain{
     @Builder.Default
     private List<FlightSet> flightSet = new ArrayList<>();
 
-    /**
-     * Get a DTO type for this domain object
-     * TODO Remove this dependency
-     * @return FlightDTO
-     */
-    public FlightDTO getFlightDTO(){
-        return FlightDTO.builder()
-                .id(id)
-                .name(name)
-                .flightSets(flightSet)
-                .build();
-    }
 
     /**
      * FlightSet static subclass representing some features related to a flight

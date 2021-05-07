@@ -30,4 +30,6 @@ public class AccountDocument {
     private LocalDateTime updated;
     private List<FlightDocument> flights = new ArrayList<>();
     private List<AssetDocument> assets = new ArrayList<>();
+
+
 }

@@ -26,7 +26,7 @@ public class AccountPersistenceAdapter implements AccountPort {
      * We use this because the application layer uses the account high level domain to perform reauest
      * The idea is to make sure that the application layer does not depends on the AccountDocument
      */
-    private final AccountMapper accountMapper;
+    private final AccountDocumentMapper accountMapper;
 
     /**
      * This function implements the getAccountByID of the OUT persistence port.

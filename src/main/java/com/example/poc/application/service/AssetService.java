@@ -1,11 +1,14 @@
 package com.example.poc.application.service;
 
+import com.example.poc.application.port.in.web.account.AccountDTOMapper;
 import com.example.poc.application.port.in.web.asset.AssetDTO;
+import com.example.poc.application.port.in.web.asset.AssetDTOMapper;
 import com.example.poc.application.port.in.web.asset.AssetUseCase;
 import com.example.poc.application.port.out.IO.IOServicePort;
 import com.example.poc.application.port.out.persistence.AccountPort;
 import com.example.poc.domain.Account;
 import com.example.poc.domain.Asset;
+import com.example.poc.domain.AssetType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,17 +26,14 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor
-public class AssetService implements AssetUseCase {
+class AssetService implements AssetUseCase {
 
-    /**
-     * Initializing the Account OUT Port as it's needed to make calls to the Persistence Adapter
-     */
+
     private final AccountPort accountPort;
-    /**
-     * Initializing the IO Service OUT Port as it's needed to forward requests to the IO service
-     * we are using.
-     */
+
     private final IOServicePort ioServicePort;
+
+    private final AssetDTOMapper assetDTOMapper;
 
     /**
      * Takes a create Asset from WEB IN and forwards it to the persistence PORT OUT for processing
@@ -47,7 +47,7 @@ public class AssetService implements AssetUseCase {
                 .map(account -> account.appendAsset(assetDTO.getAsset()))
                 .map(accountPort::saveAccount)
                 .map(Account::getLatestAsset)
-                .map(Asset::getAssetDTO)
+                .map(assetDTOMapper::toDto)
                 .orElseThrow(RuntimeException::new);
     }
 
@@ -64,9 +64,9 @@ public class AssetService implements AssetUseCase {
     @Override
     public AssetDTO addAssetWithFile(MultipartFile file, String accountId, String assetType) {
         try {
-            Asset asset = new Asset(file,accountId,assetType);
+            Asset asset = AssetType.parse(assetType).getAsset().createAsset(file,accountId,assetType);
             ioServicePort.upload(file,asset.getLocation());
-            return addAsset(accountId,asset.getAssetDTO());
+            return addAsset(accountId,assetDTOMapper.toDto(asset));
         } catch (Asset.InvalidAssetException e) {
             e.printStackTrace();
         }
@@ -83,7 +83,7 @@ public class AssetService implements AssetUseCase {
     public AssetDTO getAsset(String accountId, String assetId) {
         return accountPort.getAccountById(accountId)
                 .map(Account.getAsset(assetId))
-                .map(Asset::getAssetDTO)
+                .map(assetDTOMapper::toDto)
                 .orElseThrow(RuntimeException::new);
     }
 
@@ -101,7 +101,7 @@ public class AssetService implements AssetUseCase {
                 .map(assets -> assets
                         .stream()
                         .filter(asset -> asset.getType().getAssetType().equalsIgnoreCase(type))
-                        .map(Asset::getAssetDTO)
+                        .map(assetDTOMapper::toDto)
                         .collect(Collectors.toList())
                 ).orElseThrow(RuntimeException::new);
     }

@@ -67,7 +67,7 @@ public class HexagonalArchitectureTest {
                 ArchUnitUtils.getApplicationBasePackage());
     }
 
-    //@Test
+    @Test
     void DomainShouldNotDependOnApplication(){
         ArchUnitUtils.checkThatNoDependencyExist(
                 ArchUnitUtils.getDomainPackage(),
@@ -76,12 +76,7 @@ public class HexagonalArchitectureTest {
     }
 
     @Test
-    public void ApplicationServiceShouldBePackagePrivate() {
-        classes()
-                .that().haveSimpleNameEndingWith(ArchUnitUtils.getApplicationServicePackage())
-                .should()
-                .bePackagePrivate()
-                .check(new ClassFileImporter()
-                        .importPackages(ArchUnitUtils.getApplicationServicePackage()));
+    void ApplicationServiceShouldBePackagePrivate() {
+        ArchUnitUtils.checkPackagePrivateClassesOnly(ArchUnitUtils.getApplicationServicePackage());
     }
 }

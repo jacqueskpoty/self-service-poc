@@ -1,6 +1,7 @@
 package com.example.poc.application.service;
 
 import com.example.poc.application.port.in.web.account.AccountDTO;
+import com.example.poc.application.port.in.web.account.AccountDTOMapper;
 import com.example.poc.application.port.in.web.account.AccountUseCase;
 import com.example.poc.application.port.out.persistence.AccountPort;
 import com.example.poc.domain.Account;
@@ -22,6 +23,7 @@ class AccountService implements AccountUseCase {
      * Initializing the PORT OUT
      */
     private final AccountPort accountPort;
+    private final AccountDTOMapper accountDTOMapper;
 
     /**
      * Takes a create request from the PORT IN WEB and forwards it to the PORT OUT
@@ -31,7 +33,7 @@ class AccountService implements AccountUseCase {
      */
     @Override
     public AccountDTO create(AccountDTO accountDTO) {
-       return accountPort.saveAccount(accountDTO.getAccount()).toDTO();
+       return accountDTOMapper.toDto(accountPort.saveAccount(accountDTO.getAccount()));
     }
 
     /**
@@ -42,7 +44,7 @@ class AccountService implements AccountUseCase {
     @Override
     public AccountDTO getById(String id) {
         return accountPort.getAccountById(id)
-                .map(Account::toDTO)
+                .map(accountDTOMapper::toDto)
                 .orElseGet(AccountDTO::new);
     }
 }

@@ -2,6 +2,8 @@ package com.example.poc.application.port.in.web.asset;
 
 import com.example.poc.domain.Asset;
 import com.example.poc.domain.AssetType;
+import com.example.poc.domain.OfferCodeBankAsset;
+import com.example.poc.domain.ZipCodeBankAsset;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -35,14 +37,29 @@ public class AssetDTO {
      * @return an Asset
      */
     public Asset getAsset() {
-        return Asset.builder()
-                ._id(id)
-                .location(location)
-                .fileSize(fileSize)
-                .count(count)
-                .consumption(consumption)
-                .name(name)
-                .type(AssetType.parse(type))
-                .build();
+        AssetType assetType = AssetType.parse(type);
+        switch (assetType){
+            case ZIP:
+                return ZipCodeBankAsset.builder()
+                        ._id(id)
+                        .location(location)
+                        .fileSize(fileSize)
+                        .count(count)
+                        .consumption(consumption)
+                        .name(name)
+                        .type(AssetType.parse(type))
+                        .build();
+            case OFFERCODEBANK:
+                return OfferCodeBankAsset.builder()
+                        ._id(id)
+                        .location(location)
+                        .fileSize(fileSize)
+                        .count(count)
+                        .consumption(consumption)
+                        .name(name)
+                        .type(AssetType.parse(type))
+                        .build();
+        }
+        return null;
     }
 }

@@ -4,13 +4,11 @@ import com.example.poc.domain.Flight;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
-@Mapper(uses={FlightSetMapper.class},
-        componentModel = "spring",
+@Mapper(componentModel = "spring",
         unmappedSourcePolicy = ReportingPolicy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface FlightMapper {
+public interface FlightSetDocumentMapper {
 
-    FlightDocument toDocument(Flight flight);
+    FlightDocument.FlightSetDocument toDomain(Flight.FlightSet flightSet);
 
-    Flight toDomain(FlightDocument flightDocument);
+    Flight.FlightSet toDomain(FlightDocument.FlightSetDocument flightSetDocument);
 }
-

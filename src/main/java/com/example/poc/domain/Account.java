@@ -91,19 +91,4 @@ public class Account extends BaseDomain{
                 .orElseThrow(() -> new RuntimeException());
 
     }
-
-    /**
-     * This is to get a DTO version of this object
-     * This makes this class to depend on the WEB PORT IN and has to be removed
-     * TODO remove this from here. Changing the DAO class should not change this class
-     * 😊 I suggest we should use MapStruct to keep our business logic from unnecessary changes ✌️
-     * @return
-     */
-    public AccountDTO toDTO() {
-        return AccountDTO
-                .builder()
-                .id(id)
-                .name(name)
-                .build();
-    }
 }

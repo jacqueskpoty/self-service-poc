@@ -4,21 +4,23 @@ package com.example.poc.domain;
  * AssetType class, representing the Asset Types
  */
 public enum AssetType {
-    OFFERCODEBANK("OFFERCODEBANK"),
-    ZIP("ZIP");
+    OFFERCODEBANK("OFFERCODEBANK",new OfferCodeBankAsset()),
+    ZIP("ZIP", new ZipCodeBankAsset());
 
     private String assetType;
+    private Asset asset;
 
-    AssetType(String assetType) {
+    AssetType(String assetType,Asset asset) {
         this.assetType = assetType;
     }
 
-    /**
-     * Get the AssetType's code
-     * @return the AssetType's type in String
-     */
+
     public String getAssetType() {
         return assetType;
+    }
+
+    public Asset getAsset(){
+        return asset;
     }
 
     /**

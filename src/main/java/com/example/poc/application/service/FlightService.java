@@ -1,6 +1,7 @@
 package com.example.poc.application.service;
 
 import com.example.poc.application.port.in.web.flight.FlightDTO;
+import com.example.poc.application.port.in.web.flight.FlightDTOMapper;
 import com.example.poc.application.port.in.web.flight.FlightUseCase;
 import com.example.poc.application.port.out.persistence.AccountPort;
 import com.example.poc.domain.Account;
@@ -17,12 +18,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class FlightService implements FlightUseCase {
+class FlightService implements FlightUseCase {
 
-    /**
-     * Initializing the Account OUT Port as it's needed to make calls to the Persistence Adapter
-     */
+
     private final AccountPort accountPort;
+    private final FlightDTOMapper flightDTOMapper;
 
     /**
      * Takes Add Flight reauest from WEB IN Port and forwards in the the Persistence OUT PORT
@@ -36,7 +36,7 @@ public class FlightService implements FlightUseCase {
                 .map(account -> account.appendFlight(flightDTO.getFlight()))
                 .map(accountPort::saveAccount)
                 .map(Account::getLatestFlight)
-                .map(Flight::getFlightDTO)
+                .map(flightDTOMapper::toDto)
                 .orElseThrow(RuntimeException::new);
     }
 }

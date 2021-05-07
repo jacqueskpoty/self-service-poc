@@ -63,60 +63,6 @@ class ArchUnitUtils {
         return getFullPackage(APPLICATION_SERVICE_PACKAGE);
     }
 
-/*    public static List<String> getApplicationPackages(){
-        return new ArrayList<>(){{
-            addAll(getApplicationPortInPackages());
-            addAll(getApplicationPortOutPackages());
-            addAll(getApplicationServicePackages());
-        }};
-    }
-
-    public static List<String> getAdapterPackages(){
-        return new ArrayList<>(){{
-            addAll(getAdapterInPackages());
-            addAll(getAdapterOutPackages());
-        }};
-    }
-
-    public static List<String> getAdapterInPackages(){
-        return new ArrayList<>(){{
-            add(getAdapterPackage()+".in.web");
-        }};
-    }
-
-    public static List<String> getAdapterOutPackages(){
-        return new ArrayList<>(){{
-            add(getAdapterPackage()+".out.IO");
-            add(getAdapterPackage()+".out.persistence");
-        }};
-    }
-
-    public static List<String> getApplicationPortInPackages(){
-        return new ArrayList<>(){{
-            add(getApplicationPackage() + ".port.in.web.account");
-            add(getApplicationPackage() + ".port.in.web.asset");
-            add(getApplicationPackage() + ".port.in.web.flight");
-        }};
-    }
-
-    public static List<String> getApplicationPortOutPackages(){
-        return new ArrayList<>(){{
-            add(getApplicationPackage() + ".port.out.IO");
-            add(getApplicationPackage() + ".port.out.persistence");
-        }};
-    }
-
-    public static List<String> getApplicationServicePackages(){
-        return new ArrayList<>(){{
-            add(getApplicationPackage() + ".service");
-        }};
-    }
-
-    public static List<String> getDomainPackages(){
-        return new ArrayList<>(){{
-            add(getDomainPackage());
-        }};
-    }*/
 
     static void checkThatNoDependencyExist(String fromPackage, String toPackage, String checkPackage){
         noClasses()
@@ -140,11 +86,11 @@ class ArchUnitUtils {
         return packageName+"..";
     }
 
-    private static JavaClasses getClassesInPackage(String packageName) {
+    static JavaClasses getClassesInPackage(String packageName) {
         return new ClassFileImporter().importPackages(packageName);
     }
 
-    void denyEmptyPackage(String packageName){
+    static void denyEmptyPackage(String packageName){
         classes()
                 .that()
                 .resideInAnyPackage(allClassesInPackage(packageName))
@@ -152,9 +98,17 @@ class ArchUnitUtils {
                 .check(getClassesInPackage(packageName));
     }
 
-    void denyEmptyPackages(List<String> packages) {
+    static void denyEmptyPackages(List<String> packages) {
         for (String packageName : packages) {
             denyEmptyPackage(packageName);
         }
+    }
+
+    static void checkPackagePrivateClassesOnly(String packageName){
+        classes()
+                .that().resideInAnyPackage(allClassesInPackage(packageName))
+                .should()
+                .bePackagePrivate()
+                .check(getClassesInPackage(packageName));
     }
 }
