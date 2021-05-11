@@ -1,15 +1,17 @@
-package com.example.poc.application.port.in.web.account;
+package com.example.poc.adapter.in.web.mapper;
 
-import com.example.poc.application.port.in.web.asset.AssetDTOMapper;
-import com.example.poc.application.port.in.web.flight.FlightDTOMapper;
+import com.example.poc.adapter.in.web.dto.AccountDTO;
 import com.example.poc.domain.Account;
 import org.mapstruct.Mapper;
+
 import org.mapstruct.ReportingPolicy;
+import org.mapstruct.factory.Mappers;
 
 @Mapper(uses = {AssetDTOMapper.class, FlightDTOMapper.class},
-        componentModel = "spring",
         unmappedSourcePolicy = ReportingPolicy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AccountDTOMapper {
+
+    AccountDTOMapper INSTANCE = Mappers.getMapper( AccountDTOMapper.class );
 
     AccountDTO toDto(Account account);
     Account toDomain(AccountDTO accountDTO);

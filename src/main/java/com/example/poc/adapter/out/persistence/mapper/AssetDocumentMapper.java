@@ -1,15 +1,18 @@
-package com.example.poc.adapter.out.persistence.asset;
+package com.example.poc.adapter.out.persistence.mapper;
 
+import com.example.poc.adapter.out.persistence.model.AssetDocument;
 import com.example.poc.domain.Asset;
 import com.example.poc.domain.AssetType;
 import com.example.poc.domain.OfferCodeBankAsset;
 import com.example.poc.domain.ZipCodeBankAsset;
 import org.mapstruct.*;
+import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring",
-        unmappedSourcePolicy = ReportingPolicy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(unmappedSourcePolicy = ReportingPolicy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 
 public interface AssetDocumentMapper {
+
+    AssetDocumentMapper INSTANCE = Mappers.getMapper(AssetDocumentMapper.class);
 
     @Mapping(source = "asset.type",target = "type")
     AssetDocument toDocument(Asset asset);

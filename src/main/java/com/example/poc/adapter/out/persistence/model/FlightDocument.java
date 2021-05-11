@@ -1,4 +1,4 @@
-package com.example.poc.adapter.out.persistence.flight;
+package com.example.poc.adapter.out.persistence.model;
 
 import lombok.*;
 import org.bson.types.ObjectId;

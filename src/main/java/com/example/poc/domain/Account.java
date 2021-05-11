@@ -1,13 +1,11 @@
 package com.example.poc.domain;
 
-import com.example.poc.application.port.in.web.account.AccountDTO;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.Id;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -35,30 +33,19 @@ public class Account extends BaseDomain{
     @Builder.Default
     private List<Asset> assets = new ArrayList<>();
 
-    /**
-     * Add a Flight to this account
-     * @param flight The Flight object to add
-     * @return Account
-     */
+
     public Account appendFlight(Flight flight) {
         flights.add(flight);
         return this;
     }
 
-    /**
-     * Add an Asset to this account
-     * @param asset the Asset object to add
-     * @return Account
-     */
+
     public Account appendAsset(Asset asset) {
         assets.add(asset);
         return this;
     }
 
-    /**
-     * Get the latest Asset added to this account
-     * @return Asset
-     */
+
     public Asset getLatestAsset() {
         return assets
                 .stream()
@@ -66,10 +53,7 @@ public class Account extends BaseDomain{
                 .get();
     }
 
-    /**
-     * Get the latest Flight added to this account
-     * @return Flight
-     */
+
     public Flight getLatestFlight() {
         return flights
                 .stream()
@@ -77,12 +61,7 @@ public class Account extends BaseDomain{
                 .get();
     }
 
-    /**
-     * Get an asset belonging to this Account object
-     * @param assetId of the asset we are targeting
-     * @return a function that takes in an account and returns an asset
-     * @IIIya Good Job on using this, I never used it before 👍
-     */
+
     public static Function<Account, Asset> getAsset(String assetId) {
         return (Account account) -> account.getAssets()
                 .stream()

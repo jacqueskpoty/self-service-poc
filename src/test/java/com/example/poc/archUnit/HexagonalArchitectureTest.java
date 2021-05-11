@@ -1,9 +1,6 @@
 package com.example.poc.archUnit;
 
-import com.tngtech.archunit.core.importer.ClassFileImporter;
 import org.junit.jupiter.api.Test;
-
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
 
 public class HexagonalArchitectureTest {
@@ -73,10 +70,5 @@ public class HexagonalArchitectureTest {
                 ArchUnitUtils.getDomainPackage(),
                 ArchUnitUtils.getApplicationPackage(),
                 ArchUnitUtils.getApplicationBasePackage());
-    }
-
-    @Test
-    void ApplicationServiceShouldBePackagePrivate() {
-        ArchUnitUtils.checkPackagePrivateClassesOnly(ArchUnitUtils.getApplicationServicePackage());
     }
 }

@@ -1,5 +1,6 @@
-package com.example.poc.application.port.in.web.asset;
+package com.example.poc.adapter.in.web.mapper;
 
+import com.example.poc.adapter.in.web.dto.AssetDTO;
 import com.example.poc.domain.Asset;
 import com.example.poc.domain.AssetType;
 import com.example.poc.domain.OfferCodeBankAsset;
@@ -8,10 +9,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ObjectFactory;
 import org.mapstruct.ReportingPolicy;
+import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring",
-        unmappedSourcePolicy = ReportingPolicy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(unmappedSourcePolicy = ReportingPolicy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AssetDTOMapper {
+
+    AssetDTOMapper INSTANCE = Mappers.getMapper( AssetDTOMapper.class );
+
     @Mapping(source="_id", target = "id")
     @Mapping(source = "asset.type",target = "type")
     AssetDTO toDto(Asset asset);

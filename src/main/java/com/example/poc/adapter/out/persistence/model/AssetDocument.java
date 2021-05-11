@@ -1,4 +1,4 @@
-package com.example.poc.adapter.out.persistence.asset;
+package com.example.poc.adapter.out.persistence.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

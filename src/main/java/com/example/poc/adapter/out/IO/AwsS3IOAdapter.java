@@ -23,23 +23,11 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AwsS3IOAdapter implements IOServicePort {
 
-    /**
-     * Initializing the S3 Service which is used to communicate with AWS S3 file system
-     * This is an OUT ADAPTER
-     * Our application calls this adapter through the OUT PORT
-     */
     private final S3Client s3;
-    /**
-     * A constant configuration used by our S3 service
-     */
+
     //TODO to be moved into a configuration file
     private final String BUCKET_NAME = "pebblepost-dev-dashboard-uploads";
 
-    /**
-     * This method is used by S3 to upload a file
-     * @param file file that needs to be uploaded
-     * @param key location where the file will be stored at
-     */
     @Override
     public void upload(MultipartFile file, String key) {
         try {
@@ -56,12 +44,6 @@ public class AwsS3IOAdapter implements IOServicePort {
         }
     }
 
-    /**
-     * This method is use by S3 to download a file
-     * @param key The location of the file on S3
-     * @return returns byte Array representing the file
-     * @throws IOException throws an Inout Ouput Exception incase something goes wrong
-     */
     @Override
     public byte[] download(String key) throws IOException {
         return s3.getObject(GetObjectRequest.builder()
