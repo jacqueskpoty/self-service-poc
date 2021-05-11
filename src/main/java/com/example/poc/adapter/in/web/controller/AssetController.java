@@ -40,9 +40,9 @@ public class AssetController {
             @PathVariable("accountId") String accountId,
             @PathVariable("assetId") String assetId
     ){
-        AssetFileResponse AssetFileResponse = assetUseCase.downloadAssetFile(accountId,assetId);
+        AssetFileResponse assetFileResponse = assetUseCase.downloadAssetFile(accountId,assetId);
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+AssetFileResponse.getName()+"\"")
-                .body(AssetFileResponse.getFileBytes());
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+assetFileResponse.getName()+"\"")
+                .body(assetFileResponse.getFileBytes());
     }
 }
