@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
-public class FlightService implements FlightUseCase {
+public class DefaultFlightUseCase implements FlightUseCase {
 
     private final AccountPort accountPort;
 

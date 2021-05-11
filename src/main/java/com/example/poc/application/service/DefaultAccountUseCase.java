@@ -6,7 +6,7 @@ import com.example.poc.domain.Account;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class AccountService implements AccountUseCase {
+public class DefaultAccountUseCase implements AccountUseCase {
 
     private final AccountPort accountPort;
 
