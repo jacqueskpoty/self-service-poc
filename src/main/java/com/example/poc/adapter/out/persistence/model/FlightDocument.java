@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 import java.util.List;
 
 @Data
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper=false)
@@ -15,6 +16,7 @@ public class FlightDocument {
     private List<FlightDocument.FlightSetDocument> flightSet;
 
     @Data
+    @ToString
     @NoArgsConstructor
     @AllArgsConstructor
     @EqualsAndHashCode(callSuper=false)

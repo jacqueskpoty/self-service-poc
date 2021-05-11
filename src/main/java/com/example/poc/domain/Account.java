@@ -1,9 +1,6 @@
 package com.example.poc.domain;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.Id;
 import java.util.ArrayList;
@@ -18,6 +15,7 @@ import java.util.function.Function;
  * This class in particular only deals with ACCOUNT domain business logic
  */
 @Getter
+@ToString
 @SuperBuilder
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)

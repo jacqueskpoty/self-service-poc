@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @SuperBuilder
 public class AccountDTO {

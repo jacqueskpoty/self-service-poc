@@ -13,6 +13,7 @@ import java.util.List;
  * This class uses Lombok annotations
  */
 @Data
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper=false)

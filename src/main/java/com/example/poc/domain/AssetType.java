@@ -1,8 +1,11 @@
 package com.example.poc.domain;
 
+import lombok.ToString;
+
 /**
  * AssetType class, representing the Asset Types
  */
+@ToString
 public enum AssetType {
     OFFERCODEBANK("OFFERCODEBANK",new OfferCodeBankAsset()),
     ZIP("ZIP", new ZipCodeBankAsset());

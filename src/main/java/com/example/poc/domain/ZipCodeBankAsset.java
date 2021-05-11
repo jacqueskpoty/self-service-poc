@@ -1,12 +1,10 @@
 package com.example.poc.domain;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @Data
+@ToString
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 @SuperBuilder

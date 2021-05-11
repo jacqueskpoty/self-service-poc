@@ -1,9 +1,6 @@
 package com.example.poc.adapter.in.web.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.bson.types.ObjectId;
 
@@ -12,6 +9,7 @@ import org.bson.types.ObjectId;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
+@ToString
 @EqualsAndHashCode(callSuper = false)
 public class AssetDTO {
 

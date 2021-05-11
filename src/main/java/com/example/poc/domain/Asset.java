@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 
 
 @Data
+@ToString
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 @SuperBuilder

@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
+@ToString
 @EqualsAndHashCode(callSuper = false)
 public class FlightDTO {
     private ObjectId id;
