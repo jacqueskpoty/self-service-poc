@@ -3,6 +3,7 @@ package com.example.poc.adapter.in.web.controller;
 import com.example.poc.adapter.in.web.dto.AccountDTO;
 import com.example.poc.adapter.in.web.mapper.AccountDTOMapper;
 import com.example.poc.application.port.in.web.usecase.AccountUseCase;
+import com.example.poc.domain.Account;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -16,25 +17,22 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
 
     private final AccountUseCase accountUseCase;
-    private final AccountDTOMapper accountDTOMapper;
+    private final AccountDTOMapper accountDTOMapper = AccountDTOMapper.INSTANCE;
 
     @PostMapping("/account")
     public ResponseEntity create(@RequestBody AccountDTO accountDTO) {
-        return new ResponseEntity(
-                 accountDTOMapper.toDto(
-                    accountUseCase.create
-                    (accountDTOMapper.toDomain(accountDTO))
-                 )
-                , HttpStatus.OK);
+
+        Account account = accountDTOMapper.toDomain(accountDTO);
+        account = accountUseCase.create(account);
+        accountDTO = accountDTOMapper.toDto(account);
+        return new ResponseEntity(accountDTO, HttpStatus.OK);
     }
 
     @GetMapping("/account/{accountId}")
     public ResponseEntity getById(@PathVariable("accountId") String accountId) {
 
-        return new ResponseEntity(
-                accountDTOMapper.toDto(
-                    accountUseCase.getById(accountId)
-                )
-                , HttpStatus.OK);
+        Account account = accountUseCase.getById(accountId);
+        AccountDTO accountDTO = accountDTOMapper.toDto(account);
+        return new ResponseEntity(accountDTO, HttpStatus.OK);
     }
 }

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 
 @RequiredArgsConstructor
-public class DefaultAssetUseCase implements AssetUseCase {
+public class AssetService implements AssetUseCase {
 
     private final AccountPort accountPort;
 

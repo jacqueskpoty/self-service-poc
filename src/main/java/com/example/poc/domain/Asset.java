@@ -1,6 +1,5 @@
 package com.example.poc.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.bson.types.ObjectId;
@@ -11,7 +10,7 @@ import java.io.InputStreamReader;
 
 
 @Data
-@ToString
+
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 @SuperBuilder
@@ -19,9 +18,7 @@ public abstract class Asset extends BaseDomain{
 
     @Builder.Default
     protected ObjectId _id = ObjectId.get();
-    @JsonIgnore
     protected MultipartFile file;
-    @JsonIgnore
     protected String location;
     protected Long fileSize;
     protected Long count;

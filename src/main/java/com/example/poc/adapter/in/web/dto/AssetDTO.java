@@ -4,6 +4,8 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.bson.types.ObjectId;
 
+import java.io.InputStream;
+
 
 @Data
 @NoArgsConstructor
