@@ -1,12 +1,9 @@
-package com.example.poc.adapter.in.web.dto;
+package com.example.poc.application.port.dto;
 
-import com.example.poc.domain.Flight;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.bson.types.ObjectId;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -14,10 +11,13 @@ import java.util.List;
 @SuperBuilder
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public class FlightDTO {
-    private ObjectId id;
-    private String name;
-    @Builder.Default
-    private List<Flight.FlightSet> flightSets = new ArrayList<>();
+public class AssetDto {
 
+    private ObjectId id;
+    private String location;
+    private Long fileSize;
+    private Long count;
+    private Long consumption;
+    private String name;
+    private String type;
 }

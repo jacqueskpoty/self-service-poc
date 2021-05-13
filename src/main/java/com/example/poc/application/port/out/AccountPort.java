@@ -1,4 +1,4 @@
-package com.example.poc.application.port.out.persistence;
+package com.example.poc.application.port.out;
 
 import com.example.poc.domain.Account;
 

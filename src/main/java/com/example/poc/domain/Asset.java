@@ -3,9 +3,9 @@ package com.example.poc.domain;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.bson.types.ObjectId;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
@@ -18,7 +18,7 @@ public abstract class Asset extends BaseDomain{
 
     @Builder.Default
     protected ObjectId _id = ObjectId.get();
-    protected MultipartFile file;
+    protected InputStream inputStream;
     protected String location;
     protected Long fileSize;
     protected Long count;
@@ -36,12 +36,17 @@ public abstract class Asset extends BaseDomain{
 
 
 
-    public Asset createAsset(MultipartFile file, String accountId, String assetType) throws InvalidAssetException {
+    public Asset createAsset(InputStream inputStream,
+                             String fileName,
+                             Long size,
+                             String accountId,
+                             String assetType) throws InvalidAssetException {
         if(!validateAssetFile()) throw new InvalidAssetException("File is not accepted");
-        this.file = file;
+        this.inputStream = inputStream;
         this.count = fileLineCount();
+        this.fileSize = size;
         this.type = AssetType.parse(assetType);
-        this.location = accountId+"/"+assetType.toLowerCase()+"/"+file.getOriginalFilename();
+        this.location = accountId+"/"+assetType.toLowerCase()+"/"+fileName;
         this.name = assetType;
         return this;
     }
@@ -54,7 +59,7 @@ public abstract class Asset extends BaseDomain{
 
     protected Long fileLineCount() throws InvalidAssetException{
         try {
-            return new BufferedReader(new InputStreamReader(file.getInputStream())).lines().count();
+            return new BufferedReader(new InputStreamReader(inputStream)).lines().count();
         } catch (Exception e) {
             throw new InvalidAssetException("Failed to count file lines");
         }

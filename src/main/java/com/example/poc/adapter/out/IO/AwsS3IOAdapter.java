@@ -1,9 +1,9 @@
 package com.example.poc.adapter.out.IO;
 
-import com.example.poc.application.port.out.IO.IOServicePort;
+import com.example.poc.application.port.dto.AssetFileDto;
+import com.example.poc.application.port.out.IOServicePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
@@ -21,7 +21,7 @@ public class AwsS3IOAdapter implements IOServicePort {
     private final String BUCKET_NAME = "pebblepost-dev-dashboard-uploads";
 
     @Override
-    public void upload(MultipartFile file, String key) {
+    public void upload(AssetFileDto fileDto, String key) {
         try {
             s3.putObject(
                     PutObjectRequest
@@ -29,7 +29,7 @@ public class AwsS3IOAdapter implements IOServicePort {
                             .bucket(BUCKET_NAME)
                             .key(key)
                             .build(),
-                    RequestBody.fromInputStream(file.getInputStream(), file.getSize())
+                    RequestBody.fromInputStream(fileDto.getInputStream(), fileDto.getSize())
             );
         } catch (Exception e) {
             throw new RuntimeException("S3 upload failed to upload");

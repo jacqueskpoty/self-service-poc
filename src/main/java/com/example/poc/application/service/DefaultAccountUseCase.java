@@ -1,7 +1,9 @@
 package com.example.poc.application.service;
 
-import com.example.poc.application.port.in.web.usecase.AccountUseCase;
-import com.example.poc.application.port.out.persistence.AccountPort;
+import com.example.poc.application.port.dto.AccountDto;
+import com.example.poc.application.port.dtomapper.AccountDtoMapper;
+import com.example.poc.application.port.in.AccountUseCase;
+import com.example.poc.application.port.out.AccountPort;
 import com.example.poc.domain.Account;
 import lombok.RequiredArgsConstructor;
 
@@ -9,14 +11,18 @@ import lombok.RequiredArgsConstructor;
 public class DefaultAccountUseCase implements AccountUseCase {
 
     private final AccountPort accountPort;
+    private final AccountDtoMapper accountDtoMapper = AccountDtoMapper.INSTANCE;
 
     @Override
-    public Account create(Account account) {
-       return accountPort.saveAccount(account);
+    public AccountDto create(AccountDto accountDto) {
+        Account account = accountDtoMapper.toDomain(accountDto);
+        account = accountPort.saveAccount(account);
+        return accountDtoMapper.toDto(account);
     }
 
     @Override
-    public Account getById(String id) {
-        return accountPort.getAccountById(id).orElseGet(Account::new);
+    public AccountDto getById(String id) {
+        Account account = accountPort.getAccountById(id).orElseGet(Account::new);
+        return accountDtoMapper.toDto(account);
     }
 }

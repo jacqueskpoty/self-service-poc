@@ -1,11 +1,8 @@
-package com.example.poc.adapter.in.web.controller;
+package com.example.poc.adapter.in.web;
 
-import com.example.poc.adapter.in.web.dto.AssetDTO;
-import com.example.poc.adapter.in.web.mapper.AccountDTOMapper;
-import com.example.poc.adapter.in.web.mapper.AssetDTOMapper;
-import com.example.poc.application.port.in.web.response.AssetFileResponse;
-import com.example.poc.application.port.in.web.usecase.AssetUseCase;
-import com.example.poc.domain.Asset;
+import com.example.poc.application.port.dto.AssetDto;
+import com.example.poc.application.port.dto.AssetFileDto;
+import com.example.poc.application.port.in.AssetUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -24,7 +21,6 @@ import java.io.IOException;
 public class AssetController {
 
     private final AssetUseCase assetUseCase;
-    private final AssetDTOMapper assetDTOMapper = AssetDTOMapper.INSTANCE;
 
     @Async
     @PostMapping("/account/{accountId}/upload/{assetType}")
@@ -32,9 +28,14 @@ public class AssetController {
             @RequestPart("file") MultipartFile file,
             @PathVariable("accountId") String accountId,
             @PathVariable("assetType") String assetType
-    ){
-        Asset asset = assetUseCase.addAssetWithFile(file,accountId,assetType);
-        return new ResponseEntity(assetDTOMapper.toDto(asset), HttpStatus.OK);
+    ) throws IOException {
+        AssetFileDto assetFileDto = AssetFileDto.builder()
+                                    .name(file.getName())
+                                    .inputStream(file.getInputStream())
+                                    .size(file.getSize())
+                                    .build();
+        AssetDto assetDto = assetUseCase.addAssetWithFile(assetFileDto,accountId,assetType);
+        return new ResponseEntity(assetDto, HttpStatus.OK);
     }
 
 
@@ -44,7 +45,7 @@ public class AssetController {
             @PathVariable("accountId") String accountId,
             @PathVariable("assetId") String assetId
     ){
-        AssetFileResponse assetFileResponse = assetUseCase.downloadAssetFile(accountId,assetId);
+        AssetFileDto assetFileResponse = assetUseCase.downloadAssetFile(accountId,assetId);
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+assetFileResponse.getName()+"\"")
                 .body(assetFileResponse.getFileBytes());

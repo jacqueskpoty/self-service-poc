@@ -1,4 +1,4 @@
-package com.example.poc.adapter.in.web.dto;
+package com.example.poc.application.port.dto;
 
 import com.example.poc.domain.Asset;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -17,7 +17,7 @@ import java.util.List;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @SuperBuilder
-public class AccountDTO {
+public class AccountDto {
     @NotNull
     private String id;
     @NotNull

@@ -1,6 +1,6 @@
-package com.example.poc.adapter.in.web.mapper;
+package com.example.poc.application.port.dtomapper;
 
-import com.example.poc.adapter.in.web.dto.AssetDTO;
+import com.example.poc.application.port.dto.AssetDto;
 import com.example.poc.domain.Asset;
 import com.example.poc.domain.AssetType;
 import com.example.poc.domain.OfferCodeBankAsset;
@@ -12,19 +12,19 @@ import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(unmappedSourcePolicy = ReportingPolicy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface AssetDTOMapper {
+public interface AssetDtoMapper {
 
-    AssetDTOMapper INSTANCE = Mappers.getMapper( AssetDTOMapper.class );
+    AssetDtoMapper INSTANCE = Mappers.getMapper( AssetDtoMapper.class );
 
     @Mapping(source="_id", target = "id")
     @Mapping(source = "asset.type",target = "type")
-    AssetDTO toDto(Asset asset);
+    AssetDto toDto(Asset asset);
     @Mapping(source="id", target = "_id")
     @Mapping(source = "assetDTO.type",target = "type")
-    ZipCodeBankAsset toDomain(AssetDTO assetDTO);
+    ZipCodeBankAsset toDomain(AssetDto assetDTO);
 
     @ObjectFactory
-    default Asset createAsset(AssetDTO assetDTO) {
+    default Asset createAsset(AssetDto assetDTO) {
         AssetType assetType = AssetType.parse(assetDTO.getType());
         switch (assetType){
             case OFFERCODEBANK:
